@@ -41,18 +41,10 @@ function displayReply(id, replyname, replymessage){
 
 var index = 1;
 
-// var testName = "Joe";
-// var testHeader = "Test Header";
-// var testPost = "Lorem ipsum.";
-// var post1 = new Post(testName, testHeader, testPost);
-// var post2 = new Post("Jane", "2nd Header", "Some more text.");
 var topicsObject = new Topic();
-// newTopic.addPost(post1);
-// newTopic.addPost(post2);
 
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
-
   $("#results").append("<div class='container well' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
 }
 
