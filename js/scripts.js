@@ -17,9 +17,13 @@ Topic.prototype.assignId = function() {
 function Post (name, header, post) {
   this.name = name,
   this.header = header,
-  this.post = post
+  this.post = post,
+  this.replies = []
 }
 
+Post.prototype.addReply = function (replyObjectPost) {
+  this.replies.push(replyObjectPost)
+}
 
 function createReplyLink(postId,replyId) {
   return "<div id='reply-div-" + postId+ replyId + "'><button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-post'>Reply post</button></div>";
@@ -41,45 +45,36 @@ function displayReply(id, replyname, replymessage){
   return "Name: "+ replyname + "<br>Time" + theCurrentTime.toDateString() + "<br>Message" + replymessage + "<br>";
 }
 
-var index = 1;
-
-// var testName = "Joe";
-// var testHeader = "Test Header";
-// var testPost = "Lorem ipsum.";
-// var post1 = new Post(testName, testHeader, testPost);
-// var post2 = new Post("Jane", "2nd Header", "Some more text.");
 var topicsObject = new Topic();
-// newTopic.addPost(post1);
-// newTopic.addPost(post2);
 
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
 
   $("#results").append("<div class='container well' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
-
 }
 
 $(document).ready(function(){
   $("#results").on("click", ".btn-reply-post", function(e) {
-    console.log("hey, i see your button click on relpies, you clicked on" + this.id);
-    console.log("hey this is your text you are replying to" + this.post);
+    //console.log("hey, i see your button click on relpies, you clicked on" + this.id);
+    //console.log("hey this is your text you are replying to" + this.post);
     var postId = $(e.target).attr("data-postid");
     var replyId = $(e.target).attr("data-id");
-    console.log("clicked id=" + postId);
-
+    //console.log("clicked id=" + postId);
     $("#reply-div-" + postId+replyId).html(createReplyTextArea(postId, replyId));
-
-
-  });
+});
 
   $("#results").on("click", ".btn-reply-submit", function(e) {
 
-    console.log("Replying to the post" + this.post);
+    //console.log("Replying to the post" + this.post);
     var replyId = $(e.target).attr("data-id");
     var postId = $(e.target).attr("data-postid");
-    console.log("clicked id= postId=" + replyId + " " + postId);
+    //console.log("clicked id= " + replyId + ", postId = " + postId);
     var replyName = $("#replyname").val();
     var replyMessage = $("#replymsg").val();
+
+    var newReply = new Post(replyName, "", replyMessage) //This is a temp reply post object
+    topicsObject.posts[postId].replies.push(newReply);
+    //console.log(topicsObject.posts[postId].replies);
 
     $("#reply-msg-" + postId + replyId).html(displayReply(replyId, replyName, replyMessage));
     var nextId = parseInt(replyId) + 1;
