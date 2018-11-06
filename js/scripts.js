@@ -105,9 +105,14 @@ $(document).ready(function(){
     var post = $("#post").val();
 
     var newPost = new Post(name, header, post)
-    newPost.createPost();
-    topicsObject.addPost(newPost);
-    console.log(newPost);
+    if (name === "" || header === "" || post === "") {
+      $("#warning-text").text("Please fill out all fields")
+    } else {
+      $("#warning-text").text("")
+      newPost.createPost();
+      topicsObject.addPost(newPost);
+      console.log(newPost);
+    }
 
     $("#name").val("");
     $("#header").val("");
