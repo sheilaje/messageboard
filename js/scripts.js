@@ -20,19 +20,17 @@ function Post (name, header, post) {
   this.post = post
 }
 
-
 function createReplyLink(postId,replyId) {
   return "<div id='reply-div-" + postId+ replyId + "'><button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-post'>Reply post</button></div>";
 }
 
-
 function createReplyTextArea(postId, replyId) {
   return "<div class='well' id='reply-msg-" + postId + replyId + "'>" +
-"<div class='form-group'><label for='name'>Name:</label>" +
-"<input id='replyname' class='form-control' type='text' placeholder='Enter Your Name'></div>" +
-"<div class='form-group'><label for='header'>Reply Message:</label>" +
-"<input id='replymsg' class='form-control' type='text' placeholder='Enter Your Reply'></div>" +
-"<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'>Reply post</button></div>";
+  "<div class='form-group'><label for='name'>Name:</label>" +
+  "<input id='replyname' class='form-control' type='text' placeholder='Enter Your Name'></div>" +
+  "<div class='form-group'><label for='header'>Reply Message:</label>" +
+  "<input id='replymsg' class='form-control' type='text' placeholder='Enter Your Reply'></div>" +
+  "<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'>Reply post</button></div>";
 }
 
 function displayReply(id, replyname, replymessage){
@@ -56,7 +54,6 @@ Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
 
   $("#results").append("<div class='container well' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
-
 }
 
 $(document).ready(function(){
@@ -68,8 +65,6 @@ $(document).ready(function(){
     console.log("clicked id=" + postId);
 
     $("#reply-div-" + postId+replyId).html(createReplyTextArea(postId, replyId));
-
-
   });
 
   $("#results").on("click", ".btn-reply-submit", function(e) {
@@ -98,10 +93,10 @@ $(document).ready(function(){
     var newPost = new Post(name, header, post)
     newPost.createPost();
     topicsObject.addPost(newPost);
+    console.log(newPost);
 
     $("#name").val("");
     $("#header").val("");
     $("#post").val("");
   });
-
 });
