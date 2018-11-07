@@ -139,6 +139,7 @@ $(document).ready(function(){
     $("#search").val("");
   });
 
+$(document).ready(function(){
   $("#add-post").submit(function(event) {
     event.preventDefault();
     var name = $("#name").val();
@@ -147,10 +148,5 @@ $(document).ready(function(){
 
     var newPost = new Post(name, header, post)
     newPost.createPost();
-    topicsObject.addPost(newPost);
-
-    $("#name").val("");
-    $("#header").val("");
-    $("#post").val("");
   });
 });
