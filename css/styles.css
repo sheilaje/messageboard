@@ -1,3 +1,21 @@
+body{
+  background: url("../img/messageboard1.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size:cover;
+  content: '';
+  position: fixed;
+  top: 0; left:0; bottom:0; right:0;
+  overflow: scroll;
+}
+
+/* #searchid{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+
+} */
+
 .style-top-of-page {
   border: solid black 2px;
   background-color: lightgreen;
@@ -15,4 +33,17 @@
 
 .style-post {
   background-color: lightblue;
+}
+
+/* #searchButton{
+  height:20px;
+	width:50px;
+  padding-left: 10px;
+  margin-left: 40%;
+} */
+
+#searchPerson{
+  font-weight: bold;
+  font-style: italic;
+  border: black;
 }

@@ -44,6 +44,7 @@ Post.prototype.addReply = function (replyObjectPost) {
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
 $("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
+//console.log(postid);
 }
 
 //function createReplyLink creates the Reply Post button dynamically after every post
@@ -53,18 +54,20 @@ function createReplyLink(postId,replyId) {
 
 //function createReplyTextArea creates the form on the DOM with the fields userName and space for the user to reply to the post
 function createReplyTextArea(postId, replyId) {
+  //console.log(replyId);
   return "<div class='well style-reply' id='reply-msg-" + postId + replyId + "'>" +
-"<div class='form-group'><label for='name'>Name:</label>" +
+"<div class='form-group'><label for='name'>Name :</label>" +
 "<input id='replyname' class='form-control' type='text' placeholder='Enter Your Name'></div>" +
-"<div class='form-group'><label for='header'>Reply Message:</label>" +
+"<div class='form-group'><label for='header'>Reply Message :</label>" +
 "<input id='replymsg' class='form-control' type='text' placeholder='Enter Your Reply'></div>" +
 "<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'>Reply post</button></div>";
 }
 
+
 //function displayReply displays the reply in a new well
 function displayReply(id, replyname, replymessage){
   var theCurrentTime = new Date();
-  return "Name: "+ replyname + "<br>Time" + theCurrentTime.toDateString() + "<br>Message" + replymessage + "<br>";
+  return "Name : "+ replyname + "<br>Time :" + theCurrentTime.toDateString() + "<br>Message :" + replymessage + "<br>";
 }
 
 var topicsObject = new Topic();
@@ -82,7 +85,7 @@ $(document).ready(function(){
 //event Listener for button reply submit
 $("#results").on("click", ".btn-reply-submit", function(e) {
   var replyId = $(e.target).attr("data-id");
-  console.log($("data-id"));
+  //console.log($("data-id"));
   var postId = $(e.target).attr("data-postid");
   var replyName = $("#replyname").val();
   var replyMessage = $("#replymsg").val();
