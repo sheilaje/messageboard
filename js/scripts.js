@@ -67,10 +67,6 @@ function displayReply(id, replyname, replymessage){
   return "Name: "+ replyname + "<br>Time" + theCurrentTime.toDateString() + "<br>Message" + replymessage + "<br>";
 }
 
-// function createReplyToReplyLink(postId, replyId){
-//   return "<div id='reply-div-" + postId+ replyId + "'><button data-replyID='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-default btn-reply-post'>Reply post</button></div>";
-// }
-
 var topicsObject = new Topic();
 
 //User Interface Logic
@@ -78,11 +74,8 @@ $(document).ready(function(){
 
 //Event Listener for button button reply post
   $("#results").on("click", ".btn-reply-post", function(e) {
-    //console.log("hey, i see your button click on relpies, you clicked on" + this.id);
-    //console.log("hey this is your text you are replying to" + this.post);
     var postId = $(e.target).attr("data-postid");
     var replyId = $(e.target).attr("data-id");
-    //console.log("clicked id=" + postId);
     $("#reply-div-" + postId+replyId).html(createReplyTextArea(postId, replyId));
 });
 
@@ -100,10 +93,6 @@ $("#results").on("click", ".btn-reply-submit", function(e) {
   $("#reply-msg-" + postId + replyId).html(displayReply(replyId, replyName, replyMessage));
   var nextId = parseInt(replyId) + 1;
   $("#first-post-" + postId).append(createReplyLink(postId,nextId));
-
-  // $("#replyname").val("");
-  // $("#replymsg").val("");
-
 });
 
 //Event Listener for button search post
