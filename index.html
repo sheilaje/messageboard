@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="js/scripts.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Message Board</title>
-  </head>
-<body>
-  <div class="container">
-    <div class="style-top-of-page container">
-      <h1>Message Board</h1>
-    </div>
-
-    <div class="container style-new-post-form">  <!-- This is the form container -->
+<head>
+  <meta charset="utf-8">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="js/scripts.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Message Board</title>
+</head>
+  <body>
+    <div class="container">
+      <div class="style-top-of-page container">
+        <h1>Message Board</h1>
+      </div>
+      <div class="container style-new-post-form">  <!-- This is the form container -->
         <h2>Messages</h2>
         <form id="add-post">
-        <div class="row">
-          <div class="col-xs-6">
+          <div class="row">
+            <div class="col-xs-6">
               <div class="form-group">
                 <label for="name">Name:</label>
                 <input id="name" class="form-control" type="text" placeholder="Enter Your Name">
@@ -31,34 +30,31 @@
                 <label for="header">Header of post:</label>
                 <input id="header" class="form-control" type="text" placeholder="Enter Your Header">
               </div>
-          </div>
+            </div>
             <div class="col-xs-6">
               <div class="form-group">
-                <label for="post">Message: </label>
+                <label for="post">Message:</label>
                 <!-- <input id="post" class="form-control" type="text" placeholder="Enter your Post" style="width:100%; height:11em" > -->
                 <textarea id = "post" class="form-control" type="text" placeholder="Enter your Post" name="message" rows="4" cols="33" maxlength="1000"
-                  wrap="hard"></textarea>
+                wrap="hard"></textarea>
               </div>
               <button id="submit-post" type="submit" class="btn btn-default">Add post</button>
             </div>
           </div>
-            </form>
-          </div>  <!-- This is the end of the form container-->
+        </form>
+      </div>  <!-- This is the end of the form container-->
 
-          <form id = "searchid">
-            <div class="form-group">
-              <label for="search">Search Name:</label>
-              <input id="search" class="form-control" type="text" placeholder="Enter Your Name you want to search">
-            </div>
-            <button id="search-post" type="submit" class="btn btn-default btn-lg">Search</button>
-          </form>
+      <form id="searchid">
+        <div class="form-group">
+          <label for="search">Search Name:</label>
+          <input id="search" class="form-control" type="text" placeholder="Enter Your Name you want to search">
+        </div>
+        <button id="search-post" type="submit" class="btn btn-default btn-lg">Search</button>
+      </form>
 
-          <div id = "searchPerson">
+      <div id="searchPerson"></div>
 
-          </div>
-
-    <div id="results"></div>
-
-  </div>
-</body>
+      <div id="results"></div>
+    </div>
+  </body>
 </html>
