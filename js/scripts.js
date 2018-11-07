@@ -14,13 +14,6 @@ Topic.prototype.assignId = function() {
   return this.currentId;
 }
 
-function Post (name, header, post) {
-  this.name = name,
-  this.header = header,
-  this.post = post,
-  this.replies = []
-}
-
 Topic.prototype.findName = function(name){
   var tempArray = [];
   for (var i=0; i<this.posts.length; i++){
@@ -31,20 +24,34 @@ Topic.prototype.findName = function(name){
       tempArray.push(this.posts[i].post);
       console.log(tempArray);
     }
-
   }
   return tempArray;
+}
+
+//Bussiness Logic for Post
+function Post (name, header, post) {
+  this.name = name,
+  this.header = header,
+  this.post = post,
+  this.replies = []
 }
 
 Post.prototype.addReply = function (replyObjectPost) {
   this.replies.push(replyObjectPost)
 }
 
+//creates the initial post with a new topic
+Post.prototype.createPost = function() {
+  var theCurrentTime = new Date();
+$("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
+}
+
+//function createReplyLink creates the Reply Post button dynamically after every post
 function createReplyLink(postId,replyId) {
   return "<div id='reply-div-" + postId+ replyId + "'><button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-default btn-reply-post'>Reply post</button></div>";
 }
 
-
+//function createReplyTextArea creates the form on the DOM with the fields userName and space for the user to reply to the post
 function createReplyTextArea(postId, replyId) {
   return "<div class='well style-reply' id='reply-msg-" + postId + replyId + "'>" +
 "<div class='form-group'><label for='name'>Name:</label>" +
@@ -54,23 +61,22 @@ function createReplyTextArea(postId, replyId) {
 "<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'>Reply post</button></div>";
 }
 
+//function displayReply displays the reply in a new well
 function displayReply(id, replyname, replymessage){
   var theCurrentTime = new Date();
-
   return "Name: "+ replyname + "<br>Time" + theCurrentTime.toDateString() + "<br>Message" + replymessage + "<br>";
 }
 
+// function createReplyToReplyLink(postId, replyId){
+//   return "<div id='reply-div-" + postId+ replyId + "'><button data-replyID='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-default btn-reply-post'>Reply post</button></div>";
+// }
+
 var topicsObject = new Topic();
 
-Post.prototype.createPost = function() {
-  var theCurrentTime = new Date();
-
-  $("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
-}
-
-
-
+//User Interface Logic
 $(document).ready(function(){
+
+//Event Listener for button button reply post
   $("#results").on("click", ".btn-reply-post", function(e) {
     //console.log("hey, i see your button click on relpies, you clicked on" + this.id);
     //console.log("hey this is your text you are replying to" + this.post);
@@ -80,38 +86,36 @@ $(document).ready(function(){
     $("#reply-div-" + postId+replyId).html(createReplyTextArea(postId, replyId));
 });
 
-  $("#results").on("click", ".btn-reply-submit", function(e) {
+//event Listener for button reply submit
+$("#results").on("click", ".btn-reply-submit", function(e) {
+  var replyId = $(e.target).attr("data-id");
+  console.log($("data-id"));
+  var postId = $(e.target).attr("data-postid");
+  var replyName = $("#replyname").val();
+  var replyMessage = $("#replymsg").val();
 
-    //console.log("Replying to the post" + this.post);
-    var replyId = $(e.target).attr("data-id");
-    console.log($("data-id"));
-    var postId = $(e.target).attr("data-postid");
-    //console.log("clicked id= " + replyId + ", postId = " + postId);
-    var replyName = $("#replyname").val();
-    var replyMessage = $("#replymsg").val();
+  var newReply = new Post(replyName, "", replyMessage) //This is a temp reply post object
+  topicsObject.posts[postId].replies.push(newReply);
 
-    var newReply = new Post(replyName, "", replyMessage) //This is a temp reply post object
-    topicsObject.posts[postId].replies.push(newReply);
-    //console.log(topicsObject.posts[postId].replies);
+  $("#reply-msg-" + postId + replyId).html(displayReply(replyId, replyName, replyMessage));
+  var nextId = parseInt(replyId) + 1;
+  $("#first-post-" + postId).append(createReplyLink(postId,nextId));
 
-    $("#reply-msg-" + postId + replyId).html(displayReply(replyId, replyName, replyMessage));
-    var nextId = parseInt(replyId) + 1;
-    $("#first-post-" + postId).append(createReplyLink(postId,nextId));
-  });
+  // $("#replyname").val("");
+  // $("#replymsg").val("");
 
+});
+
+//Event Listener for button search post
   $("#searchid").on("click", "#search-post", function(event){
     event.preventDefault();
     var searchName = $("#search").val();
     console.log(searchName);
-    //var searchNameResults = [];
     var searchNameResults = topicsObject.findName(searchName);
     console.log(searchNameResults);
     $("#searchPerson").html(searchNameResults);
-
+    $("#search").val("");
   });
-
-  // $("#results").on("click", ".btn-delete-post", function() {
-  // });
 
   $("#add-post").submit(function(event) {
     event.preventDefault();
