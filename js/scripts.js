@@ -21,17 +21,32 @@ function Post (name, header, post) {
   this.replies = []
 }
 
+Topic.prototype.findName = function(name){
+  var tempArray = [];
+  for (var i=0; i<this.posts.length; i++){
+    if(this.posts[i].name === name){
+      console.log("Hey , you r inside the loop");
+      console.log(this);
+      console.log(this.posts[i].post);
+      tempArray.push(this.posts[i].post);
+      console.log(tempArray);
+    }
+
+  }
+  return tempArray;
+}
+
 Post.prototype.addReply = function (replyObjectPost) {
   this.replies.push(replyObjectPost)
 }
 
 function createReplyLink(postId,replyId) {
-  return "<div id='reply-div-" + postId+ replyId + "'><button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-post'>Reply post</button></div>";
+  return "<div id='reply-div-" + postId+ replyId + "'><button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-default btn-reply-post'>Reply post</button></div>";
 }
 
 
 function createReplyTextArea(postId, replyId) {
-  return "<div class='well' id='reply-msg-" + postId + replyId + "'>" +
+  return "<div class='well style-reply' id='reply-msg-" + postId + replyId + "'>" +
 "<div class='form-group'><label for='name'>Name:</label>" +
 "<input id='replyname' class='form-control' type='text' placeholder='Enter Your Name'></div>" +
 "<div class='form-group'><label for='header'>Reply Message:</label>" +
@@ -50,8 +65,10 @@ var topicsObject = new Topic();
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
 
-  $("#results").append("<div class='container well' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
+  $("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
 }
+
+
 
 $(document).ready(function(){
   $("#results").on("click", ".btn-reply-post", function(e) {
@@ -67,6 +84,7 @@ $(document).ready(function(){
 
     //console.log("Replying to the post" + this.post);
     var replyId = $(e.target).attr("data-id");
+    console.log($("data-id"));
     var postId = $(e.target).attr("data-postid");
     //console.log("clicked id= " + replyId + ", postId = " + postId);
     var replyName = $("#replyname").val();
@@ -81,8 +99,19 @@ $(document).ready(function(){
     $("#first-post-" + postId).append(createReplyLink(postId,nextId));
   });
 
-  $("#results").on("click", ".btn-delete-post", function() {
+  $("#searchid").on("click", "#search-post", function(event){
+    event.preventDefault();
+    var searchName = $("#search").val();
+    console.log(searchName);
+    //var searchNameResults = [];
+    var searchNameResults = topicsObject.findName(searchName);
+    console.log(searchNameResults);
+    $("#searchPerson").html(searchNameResults);
+
   });
+
+  // $("#results").on("click", ".btn-delete-post", function() {
+  // });
 
   $("#add-post").submit(function(event) {
     event.preventDefault();
@@ -98,5 +127,4 @@ $(document).ready(function(){
     $("#header").val("");
     $("#post").val("");
   });
-
 });

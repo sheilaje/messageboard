@@ -1,0 +1,18 @@
+.style-top-of-page {
+  border: solid black 2px;
+  background-color: lightgreen;
+
+}
+
+.style-new-post-form {
+  border: solid black 2px;
+  background-color: cyan;
+}
+
+.style-reply {
+  background-color: lightcyan;
+}
+
+.style-post {
+  background-color: lightblue;
+}
