@@ -35,7 +35,17 @@ function Post (name, header, post) {
   this.post = post,
   this.replies = []
 }
-
+//------------------------------------------------
+// Post.prototype.addPost = function(reply) {
+//   replies.id = this.assignId();
+//   this.replies.push(reply);
+// }
+//
+// Post.prototype.assignId = function() {
+//   this.currentId += 1;
+//   return this.currentId;
+// }
+//------------------------------------------------
 Post.prototype.addReply = function (replyObjectPost) {
   this.replies.push(replyObjectPost)
 }
@@ -54,7 +64,8 @@ function createReplyLink(postId,replyId) {
 
 //function createReplyTextArea creates the form on the DOM with the fields userName and space for the user to reply to the post
 function createReplyTextArea(postId, replyId) {
-  //console.log(replyId);
+  console.log(postId);
+  console.log(replyId);
   return "<div class='well style-reply' id='reply-msg-" + postId + replyId + "'>" +
 "<div class='form-group'><label for='name'>Name :</label>" +
 "<input id='replyname' class='form-control' type='text' placeholder='Enter Your Name'></div>" +
@@ -62,7 +73,6 @@ function createReplyTextArea(postId, replyId) {
 "<input id='replymsg' class='form-control' type='text' placeholder='Enter Your Reply'></div>" +
 "<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'>Reply post</button></div>";
 }
-
 
 //function displayReply displays the reply in a new well
 function displayReply(id, replyname, replymessage){
@@ -90,11 +100,12 @@ $("#results").on("click", ".btn-reply-submit", function(e) {
   var replyName = $("#replyname").val();
   var replyMessage = $("#replymsg").val();
 
-  var newReply = new Post(replyName, "", replyMessage) //This is a temp reply post object
+  var newReply = new Post(replyName, ("replyUniqueId-" + postId + "-" + replyId), replyMessage) //This is a temp reply post object
   topicsObject.posts[postId].replies.push(newReply);
 
   $("#reply-msg-" + postId + replyId).html(displayReply(replyId, replyName, replyMessage));
   var nextId = parseInt(replyId) + 1;
+  console.log(postId,nextId);
   $("#first-post-" + postId).append(createReplyLink(postId,nextId));
 });
 
