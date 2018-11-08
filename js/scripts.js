@@ -53,9 +53,20 @@ Post.prototype.addReply = function (replyObjectPost) {
 //creates the initial post with a new topic
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
-$("#results").append("<div class='container  style-post' id='first-post-"  + topicsObject.currentId + "'><div class = 'panel-heading panel-info'><h2>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div>" + "<div class= 'panel-body'>" + this.post + "<br>"  + createReplyLink(topicsObject.currentId,0) + "</div></div>")
+$("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
 //console.log(postid);
 }
+
+
+// Post.prototype.createPost = function() {
+//   var theCurrentTime = new Date();
+// $("#results").append("<div class='container style-post' id='first-post-'"+ topicsObject.currentId+"><h4>"+this.header+"</h4>"+"<br>"+this.name+"<br>"+  theCurrentTime.toDateString()+"</div>"+"<div class = 'panel-body'> " + this.post + "<br>" + createReplyLink(topicsObject.currentId,0) + "</div>");
+
+// Post.prototype.createPost = function() {
+//   var theCurrentTime = new Date();
+// $("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
+// //console.log(postid);
+// }
 
 //function createReplyLink creates the Reply Post button dynamically after every post
 function createReplyLink(postId,replyId) {
@@ -76,7 +87,7 @@ function createReplyTextArea(postId, replyId) {
 //function displayReply displays the reply in a new well
 function displayReply(id, replyname, replymessage){
   var theCurrentTime = new Date();
-  return "<div class = 'panel panel-info'><div class='panel-heading panel-info'>" +  "Name : " + replyname + "<br>Time : " + theCurrentTime.toDateString() + "</div><br><div class = 'panel-body'>" + "Message : " + replymessage + "<br>";
+  return "<div class = 'panel panel-info'><div class='panel-heading panel-info'>" +  "Name : " + replyname + "<br>Time : " + theCurrentTime.toDateString() + "</div><br><div class = 'panel-body'>" + replymessage + "<br>";
 }
 
 var topicsObject = new Topic();
