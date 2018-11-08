@@ -45,6 +45,7 @@ Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
 $("#results").append("<div class = 'container'><div class='panel panel-info'><div class='panel-heading panel-info' id='first-post-" + topicsObject.currentId + "'><br><h2>" + this.header + "</h2><br>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div><div class='panel-body'>" + this.post + "<br>" +
 "</div><div id='first-post-footer-" + topicsObject.currentId + "' class='panel-footer'>" + createReplyLink(topicsObject.currentId,0) + "</div></div></div>");
+$(".sidenav").append("<a href='#first-post-" + topicsObject.currentId + "'>" + this.header + "</a>")
 }
 
 //function createReplyLink creates the Reply Post button dynamically after every post
