@@ -53,9 +53,15 @@ Post.prototype.addReply = function (replyObjectPost) {
 //creates the initial post with a new topic
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
-$("#results").append("<div class='container  style-post' id='first-post-"  + topicsObject.currentId + "'><div class = 'panel-heading panel-info'><h2>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div>" + "<div class= 'panel-body'>" + this.post + "<br>"  + createReplyLink(topicsObject.currentId,0) + "</div></div>")
-//console.log(postid);
+$("#results").append("<div class = 'container'><div class='panel panel-info'><div class='panel-heading panel-info' id='first-post-" + topicsObject.currentId + "'><br><h2>" + this.header + "</h2><br>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div><div class='panel-body'>" + this.post + "<br>" + 
+"</div><div id='first-post-footer-" + topicsObject.currentId + "' class='panel-footer'>" + createReplyLink(topicsObject.currentId,0) + "</div></div></div>");
 }
+
+// Post.prototype.createPost = function() {
+//   var theCurrentTime = new Date();
+// $("#results").append("<div class = 'container'><div class='panel panel-info'><div class='panel-heading panel-info' id='first-post-" + topicsObject.currentId + "'><br><h2>" + this.header + "</h2><br>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div><div class='panel-body'>" + this.post + "<br>"  +
+// "</div><div class='panel-footer'>" + createReplyLink(topicsObject.currentId,0)+ "</div></div></div>");
+// }
 
 //function createReplyLink creates the Reply Post button dynamically after every post
 function createReplyLink(postId,replyId) {
@@ -105,7 +111,7 @@ $("#results").on("click", ".btn-reply-submit", function(e) {
   $("#reply-msg-" + postId + replyId).html(displayReply(replyId, replyName, replyMessage));
   var nextId = parseInt(replyId) + 1;
   console.log(postId,nextId);
-  $("#first-post-" + postId).append(createReplyLink(postId,nextId));
+  $("#first-post-footer-" + postId).append(createReplyLink(postId,nextId));
 });
 
 //Event Listener for button search post
