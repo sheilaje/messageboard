@@ -19,20 +19,42 @@ body{
 .style-top-of-page {
   border: solid black 2px;
   background-color: lightgreen;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
 }
 
 .style-new-post-form {
   border: solid black 2px;
   background-color: cyan;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.style-reply {
+/* .style-reply {
+  border: solid black 2px;
   background-color: lightcyan;
-}
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+} */
 
-.style-post {
+/* .style-post {
+  border: solid black 2px;
   background-color: lightblue;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+} */
+
+.style-search-form {
+  border: solid black 2px;
+  background-color: grey;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* #searchButton{

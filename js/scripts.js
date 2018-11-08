@@ -53,7 +53,7 @@ Post.prototype.addReply = function (replyObjectPost) {
 //creates the initial post with a new topic
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
-$("#results").append("<div class='container well style-post' id='first-post-"  + topicsObject.currentId + "'><h2>" + this.header + "</h2>" + "<br>" + this.post + "<br>" + this.name + "<br>" + theCurrentTime.toDateString() + createReplyLink(topicsObject.currentId,0) + "</div>")
+$("#results").append("<div class='container  style-post' id='first-post-"  + topicsObject.currentId + "'><div class = 'panel-heading panel-info'><h2>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div>" + "<div class= 'panel-body'>" + this.post + "<br>"  + createReplyLink(topicsObject.currentId,0) + "</div></div>")
 //console.log(postid);
 }
 
@@ -66,18 +66,17 @@ function createReplyLink(postId,replyId) {
 function createReplyTextArea(postId, replyId) {
   console.log(postId);
   console.log(replyId);
-  return "<div class='well style-reply' id='reply-msg-" + postId + replyId + "'>" +
-"<div class='form-group'><label for='name'>Name :</label>" +
+  return "<div class=' style-reply' id='reply-msg-" + postId + replyId + "'>" +
+"<div class='form-group'><label for='name'><i class='glyphicon glyphicon-user'></i>Name :</label>" +
 "<input id='replyname' class='form-control' type='text' placeholder='Enter Your Name'></div>" +
-"<div class='form-group'><label for='header'>Reply Message :</label>" +
-"<input id='replymsg' class='form-control' type='text' placeholder='Enter Your Reply'></div>" +
-"<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'>Reply post</button></div>";
+"<div class='form-group'><label for='header'><i class='glyphicon glyphicon-pencil'></i>Reply Message :</label>" +"<input id='replymsg' class='form-control' type='text' placeholder='Enter Your Reply'></div>" +
+"<button data-postid='" + postId + "' data-id='" + replyId + "' type='button' class='btn btn-reply-submit'><i class='glyphicon glyphicon-plus'></i>Reply post</button></div>";
 }
 
 //function displayReply displays the reply in a new well
 function displayReply(id, replyname, replymessage){
   var theCurrentTime = new Date();
-  return "Name : "+ replyname + "<br>Time :" + theCurrentTime.toDateString() + "<br>Message :" + replymessage + "<br>";
+  return "<div class = 'panel panel-info'><div class='panel-heading panel-info'>" +  "Name : " + replyname + "<br>Time : " + theCurrentTime.toDateString() + "</div><br><div class = 'panel-body'>" + "Message : " + replymessage + "<br>";
 }
 
 var topicsObject = new Topic();
