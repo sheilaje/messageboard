@@ -35,17 +35,7 @@ function Post (name, header, post) {
   this.post = post,
   this.replies = []
 }
-//------------------------------------------------
-// Post.prototype.addPost = function(reply) {
-//   replies.id = this.assignId();
-//   this.replies.push(reply);
-// }
-//
-// Post.prototype.assignId = function() {
-//   this.currentId += 1;
-//   return this.currentId;
-// }
-//------------------------------------------------
+
 Post.prototype.addReply = function (replyObjectPost) {
   this.replies.push(replyObjectPost)
 }
@@ -53,15 +43,9 @@ Post.prototype.addReply = function (replyObjectPost) {
 //creates the initial post with a new topic
 Post.prototype.createPost = function() {
   var theCurrentTime = new Date();
-$("#results").append("<div class = 'container'><div class='panel panel-info'><div class='panel-heading panel-info' id='first-post-" + topicsObject.currentId + "'><br><h2>" + this.header + "</h2><br>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div><div class='panel-body'>" + this.post + "<br>" + 
+$("#results").append("<div class = 'container'><div class='panel panel-info'><div class='panel-heading panel-info' id='first-post-" + topicsObject.currentId + "'><br><h2>" + this.header + "</h2><br>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div><div class='panel-body'>" + this.post + "<br>" +
 "</div><div id='first-post-footer-" + topicsObject.currentId + "' class='panel-footer'>" + createReplyLink(topicsObject.currentId,0) + "</div></div></div>");
 }
-
-// Post.prototype.createPost = function() {
-//   var theCurrentTime = new Date();
-// $("#results").append("<div class = 'container'><div class='panel panel-info'><div class='panel-heading panel-info' id='first-post-" + topicsObject.currentId + "'><br><h2>" + this.header + "</h2><br>" + this.name + "<br>" + theCurrentTime.toDateString() + "</div><div class='panel-body'>" + this.post + "<br>"  +
-// "</div><div class='panel-footer'>" + createReplyLink(topicsObject.currentId,0)+ "</div></div></div>");
-// }
 
 //function createReplyLink creates the Reply Post button dynamically after every post
 function createReplyLink(postId,replyId) {

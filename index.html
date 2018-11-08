@@ -1,72 +1,87 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="js/scripts.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Message Board</title>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="js/scripts.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Message Board</title>
+</head>
 <body>
-  <div class="container">
+
+  <div class="sidenav">
+    <a href="#add-post">Add post</a>
+    <a href="#searchid">Name search</a>
+    <a href="#first-post-0">About</a>
+    <a href="#first-post-1">Services</a>
+    <a href="#first-post-2">Clients</a>
+    <a href="#first-post-3">Contact</a>
+    <a href="#first-post-4">Contact</a>
+    <a href="#first-post-5">Contact</a>
+    <a href="#first-post-6">Contact</a>
+    <a href="#first-post-7">Contact</a>
+    <a href="#first-post-8">Contact</a>
+  </div>
+
+  <div class="container main">
     <div class="style-top-of-page container">
       <h1>Message Board</h1>
     </div>
 
     <div class="container style-new-post-form">  <!-- This is the form container -->
-        <h2>Messages</h2>
-        <form id="add-post">
+      <h2>Messages</h2>
+      <form id="add-post">
         <div class="row">
-          <div class="col-xs-6">
-              <div class="form-group">
-                <label for="name"><i class="glyphicon glyphicon-user"></i> Name: </label>
-                <input id="name" class="form-control" type="text" placeholder="Enter Your Name">
-              </div>
-              <div class="form-group">
-                <label for="header"> <i class="glyphicon glyphicon-pencil"></i> Topic :</label>
-                <input id="header" class="form-control" type="text" placeholder="Enter Your Header">
-              </div>
-          </div>
-            <div class="col-xs-6">
-              <div class="form-group">
-                <label for="post"><i class="glyphicon glyphicon-align-justify"></i> Message: </label>
-                <!-- <input id="post" class="form-control" type="text" placeholder="Enter your Post" style="width:100%; height:11em" > -->
-                <textarea id = "post" class="form-control" type="text" placeholder="Enter your Post" name="message" rows="4" cols="33" maxlength="1000"
-                  wrap="hard"></textarea>
-              </div>
-              <button id="submit-post" type="submit" class="btn btn-default"> <i class="glyphicon glyphicon-plus"></i>Add post</button>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name"><i class="glyphicon glyphicon-user"></i> Name: </label>
+              <input id="name" class="form-control" type="text" placeholder="Enter Your Name">
+            </div>
+            <div class="form-group">
+              <label for="header"> <i class="glyphicon glyphicon-pencil"></i> Topic :</label>
+              <input id="header" class="form-control" type="text" placeholder="Enter Your Header">
             </div>
           </div>
-            </form>
-          </div>  <!-- This is the end of the form container-->
-
-          <div class="container style-search-form">
-          <form id = "searchid">
-            <div class=" form-group">
-              <label for="search">Search Name:</label>
-              <input id="search" class="form-control" type="text" placeholder="Enter Your Name you want to search">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="post"><i class="glyphicon glyphicon-align-justify"></i> Message: </label>
+              <!-- <input id="post" class="form-control" type="text" placeholder="Enter your Post" style="width:100%; height:11em" > -->
+              <textarea id = "post" class="form-control" type="text" placeholder="Enter your Post" name="message" rows="4" cols="33" maxlength="1000"
+              wrap="hard"></textarea>
             </div>
-            <button id="search-post" type="submit" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-search"></i>Search </button>
-          </form>
-          <div id = "searchPerson">
+            <button id="submit-post" type="submit" class="btn btn-default"> <i class="glyphicon glyphicon-plus"></i>Add post</button>
           </div>
         </div>
+      </form>
+    </div>  <!-- This is the end of the form container-->
+
+    <div class="container style-search-form">
+      <form id = "searchid">
+        <div class=" form-group">
+          <label for="search">Search Name:</label>
+          <input id="search" class="form-control" type="text" placeholder="Enter Your Name you want to search">
+        </div>
+        <button id="search-post" type="submit" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-search"></i>Search </button>
+      </form>
+      <div id = "searchPerson">
+      </div>
+    </div>
 
     <div id="results"></div>
 
     <!-- <div class = "container"> -->
 
     <!-- <div class="panel panel-info">
-      <div class="panel-heading panel-info">this.header this.name theCurrentTime.toDateString()</div>
-      <div class="panel-body">this.post createReplyLink(topicsObject.currentId,0)</div>
-      <div class="panel-footer">Panel Footer</div>
-    </div>
-  </div>  -->
-</div>
+    <div class="panel-heading panel-info">this.header this.name theCurrentTime.toDateString()</div>
+    <div class="panel-body">this.post createReplyLink(topicsObject.currentId,0)</div>
+    <div class="panel-footer">Panel Footer</div>
+  </div>
+</div>  -->
+  </div>
 </body>
 </html>
