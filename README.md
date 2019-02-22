@@ -16,16 +16,16 @@ _A semi-threaded message board where users can reply to initial posts_
 ## Goal Behaviors
 
 The following behaviors are needed:
-* _[X] The ability of a user to create a message post._
-* _[X] The ability of another user to reply to the existing post._
+* [x] The ability of a user to create a message post._
+* [x] The ability of another user to reply to the existing post._
 
 The following behaviors are wanted:
-* _[X] The ability to put your name on your post / reply._
+* [x] The ability to put your name on your post / reply._
 * _The ability to group many posts as a single topic._
 * _The ability to pick which group of posts to view._
-* _[X] Add professional styling:_
+* [x] Add professional styling:_
   * _Have a clear distinction between posts and topics._
-  * _[X] Make the UI intuitive._
+  * [x] Make the UI intuitive._
 
 The following behaviors are wish list:
 * _The ability to view groups of topics._
